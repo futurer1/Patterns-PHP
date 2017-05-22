@@ -1,3 +1,4 @@
+<?php
 abstract class Lesson {
     private   $duration;
     private   $costStrategy;
@@ -63,3 +64,4 @@ foreach ( $lessons as $lesson ) { //выводим содержимое объе
     print "lesson charge {$lesson->cost()}. ";
     print "Charge type: {$lesson->chargeType()}\n";
 }
+?>
