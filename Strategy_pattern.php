@@ -9,7 +9,7 @@ abstract class Lesson {
     }
 
     function cost() {
-        return $this->costStrategy->cost( $this );
+        return $this->costStrategy->cost( $this );      //делегирование метода другому классу
     }
 
     function chargeType() {
@@ -23,8 +23,15 @@ abstract class Lesson {
     //какие-то ещё методы класса...
 }
 
+class Lecture extends Lesson {
+    //Уточнение специфичной реализации класса Лекция
+}
 
-abstract class CostStrategy {
+class Seminar extends Lesson {
+    //Уточнение специфичной реализации класса Семинар
+}
+
+abstract class CostStrategy {    //это делегат класса Lesson
     abstract function cost( Lesson $lesson );
     abstract function chargeType();
 }
@@ -48,20 +55,17 @@ class FixedCostStrategy extends CostStrategy {
     }
 }
 
-class Lecture extends Lesson {
-    //Уточнение специфичной реализации класса Лекция
-}
-
-class Seminar extends Lesson {
-    //Уточнение специфичной реализации класса Семинар
-}
-
 //заполняем массив новыми объектами
-$lessons[] = new Seminar( 4, new TimedCostStrategy() );
+$lessons[] = new Seminar( 4, new TimedCostStrategy() ); //в конструктор Seminar отправляем объект TimedCostStrategy
 $lessons[] = new Lecture( 4, new FixedCostStrategy() );
 
 foreach ( $lessons as $lesson ) { //выводим содержимое объектов, содержащихся в массиве
-    print "lesson charge {$lesson->cost()}. ";
-    print "Charge type: {$lesson->chargeType()}\n";
+    print "Оплата за занятие {$lesson->cost()}. ";
+    print "Тип оплаты: {$lesson->chargeType()}\n";
 }
+/*
+Выведет:
+Оплата за занятие 20. Тип оплаты: почасовая оплата
+Оплата за занятие 30. Тип оплаты: фиксированная оплата
+*/
 ?>
