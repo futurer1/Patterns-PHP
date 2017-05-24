@@ -7,9 +7,15 @@
 
 class Preferences    //объект типа Singletone для хранения и обмена данными внутри приложения
 {
-    private $props = array();
+    private $props = array();   //массив для хранения/выдачи данных, записываемых и считываемых из вне объекта
+    private static $instance;   //переменная для хранения единственного объекта, созданного на основе класса Preferences
 
     private function __construct() {}   //private для того, чтобы невозможно было создать объект извне данного класса
+    
+    public static function getInstance()    //метод для первичного создания и последующего возврата объекта из переменной $instance
+    {
+        
+    }
 
     public function setProperty($val)   //метод записывает значение в массив для хранения внутри объекта
     {
