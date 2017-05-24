@@ -13,8 +13,12 @@ class Preferences    //объект типа Singletone для хранения 
     private function __construct() {}   //private для того, чтобы невозможно было создать объект извне данного класса
     
     public static function getInstance()    //метод для первичного создания и последующего возврата объекта из переменной $instance
+                                            //статический, чтобы мы могли обращаться из вне класса
     {
-        
+        if ( empty(self::instance) ){    //если переменная не установлена (в ней ещё нет объекта)
+            self::instance = new Preferences();    //создаём объект за счёт того, что можем вызвать конструктор private
+        }
+        return self::instance;           //возвращаем объект
     }
 
     public function setProperty($val)   //метод записывает значение в массив для хранения внутри объекта
@@ -28,5 +32,5 @@ class Preferences    //объект типа Singletone для хранения 
     }
 }
 
-
+//
 ?>
