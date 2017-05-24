@@ -6,12 +6,19 @@
 abstract class Employee    //абстрактный супер-класс для всех сотрудников
 {
     protected $name;
-    
+    private static $types = array( 'Minion', 'CluedUp', 'WellConnected' );    //типы объектов, которые будет создавать фабрика
+
+    static function recruit( $name ) {      //создает объект сотрудника случайного типа и возвращает его
+        $num = rand( 1, count( self::$types ) )-1;
+        $class = self::$types[$num];
+        return new $class( $name );
+    }
+
     public function __construct( $name ) {
         $this->name = $name;
     }
     
-    abstract function fire();
+    abstract function fire();    //реализация будет внутри каждого типа сотрудника по отдельности
 }
 
 class Minion extends Employee    //наследник исполняющий функционал 1 (младшие сотрудники)
@@ -35,7 +42,7 @@ class WellConnected extends Employee    //наследник исполняющ�
     }
 }
 
-class NastyBoss    //класс-фабрика для создания и удаления объектов cjnhelybrjd
+class NastyBoss    //класс-фабрика для создания и удаления объектов Employee
 {
     private $employees = array();    //здесь будут храниться объекты сотрудников
 
@@ -43,19 +50,19 @@ class NastyBoss    //класс-фабрика для создания и уда
         $this->employees[] = $employee;
     }
 
-    public function projectFails() {    //удаляет сотрудника, использую метод fire() класса сотрудника
+    public function projectFails() {          //удаляет сотрудника, использую метод fire() класса сотрудника
         if ( count( $this->employees ) ) {    //если есть кого уволить
             $emp = array_pop( $this->employees );
-            $emp->fire();    //использован полиморфизм
+            $emp->fire();                     //использован полиморфизм
         }
     }
 }
 
 //Используем инструментарий
 $boss = new NastyBoss();
-$boss->addEmployee( new Minion("Василий") );   //используем статический метод супер-класса для получения объекта
-$boss->addEmployee( new CluedUp("Николай") );
-$boss->addEmployee( new WellConnected("Галина") );
+$boss->addEmployee( Employee::recruit("Василий") );   //используем статический метод супер-класса для получения объекта
+$boss->addEmployee( Employee::recruit("Николай") );
+$boss->addEmployee( Employee::recruit("Галина") );
 
 $boss->projectFails();
 $boss->projectFails();
