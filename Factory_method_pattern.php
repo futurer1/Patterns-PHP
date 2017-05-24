@@ -11,3 +11,9 @@ class BloggsApptEncoder extends ApptEncoder {
         return "Кодируем данные в формат Bloggs<br />";
     }
 }
+
+abstract class CommsManager {
+    abstract function getHeaderText();
+    abstract function getApptEncoder();
+    abstract function getFooterText();
+}
