@@ -1,3 +1,4 @@
+<?php
 /**
 * Шаблон Factory Method
 */
@@ -17,3 +18,24 @@ abstract class CommsManager {
     abstract function getApptEncoder();
     abstract function getFooterText();
 }
+
+class BloggsCommsManager extends CommsManager {
+    function getHeaderText() {
+        return "Заголовок Bloggs\n";
+    }
+
+    function getApptEncoder() {
+        return new BloggsApptEncoder();    //возвращает созданный закодированный объект типа Bloggs
+    }
+
+    function getFooterText() {
+        return "Подвал Bloggs\n";
+    }
+}
+
+//Используем инструментарий:
+$mgr = new BloggsCommsManager();
+print $mgr->getHeaderText();
+print $mgr->getApptEncoder()->encode();    //вызов метода encode() объекта BloggsApptEncoder, созданного методом-фабрикой getApptEncoder()
+print $mgr->getFooterText();
+?>
