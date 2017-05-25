@@ -9,9 +9,15 @@ abstract class ApptEncoder {    //супер-класс продукта
     abstract function encode();
 }
 
-class BloggsApptEncoder extends ApptEncoder {    //конкретная реализация объекта-продукта
+class BloggsApptEncoder extends ApptEncoder {    //конкретная реализация 1 объекта-продукта
     function encode() {
         return "Кодируем данные в формат Bloggs<br />";
+    }
+}
+
+class MegaApptEncoder extends ApptEncoder {    //конкретная реализация 2 объекта-продукта
+    function encode() {
+        return "Кодируем данные в формат Mega<br />";
     }
 }
 
@@ -21,9 +27,9 @@ abstract class CommsManager {    //супер-класс создателя
     abstract function getFooterText();
 }
 
-class BloggsCommsManager extends CommsManager {    //реализация класса создателя
+class BloggsCommsManager extends CommsManager {    //реализация 1 класса создателя
     function getHeaderText() {
-        return "Заголовок Bloggs\n";
+        return "Заголовок Bloggs<br />";
     }
 
     function getApptEncoder() {
@@ -31,7 +37,21 @@ class BloggsCommsManager extends CommsManager {    //реализация кла
     }
 
     function getFooterText() {
-        return "Подвал Bloggs\n";
+        return "Подвал Bloggs<br />";
+    }
+}
+
+class MegaCommsManager extends CommsManager {    //реализация 2 класса создателя
+    function getHeaderText() {
+        return "Заголовок Mega<br />";
+    }
+
+    function getApptEncoder() {
+        return new MegaApptEncoder();    //возвращает созданный объект типа Mega
+    }
+
+    function getFooterText() {
+        return "Подвал Mega<br />";
     }
 }
 
@@ -40,4 +60,9 @@ $mgr = new BloggsCommsManager();
 print $mgr->getHeaderText();
 print $mgr->getApptEncoder()->encode();    //вызов метода encode() объекта BloggsApptEncoder, созданного методом-фабрикой getApptEncoder()
 print $mgr->getFooterText();
+
+$mgr1 = new MegaCommsManager();
+print $mgr1->getHeaderText();
+print $mgr1->getApptEncoder()->encode();    //вызов метода encode() объекта MegaApptEncoder, созданного методом-фабрикой getApptEncoder()
+print $mgr1->getFooterText();
 ?>
