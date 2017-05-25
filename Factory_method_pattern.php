@@ -1,31 +1,33 @@
 <?php
 /**
 * Шаблон Factory Method
+* Создатель - класс фабрики, в котором определем метод для генерации объекта-продукта.
+* В каждом подклассе создателя создается экземпляр параллельного дочернего класса продукта.
 */
 
-abstract class ApptEncoder {
+abstract class ApptEncoder {    //супер-класс продукта
     abstract function encode();
 }
 
-class BloggsApptEncoder extends ApptEncoder {
+class BloggsApptEncoder extends ApptEncoder {    //конкретная реализация объекта-продукта
     function encode() {
         return "Кодируем данные в формат Bloggs<br />";
     }
 }
 
-abstract class CommsManager {
+abstract class CommsManager {    //супер-класс создателя
     abstract function getHeaderText();
-    abstract function getApptEncoder();
+    abstract function getApptEncoder();    //метод для генерации объекта-продукта
     abstract function getFooterText();
 }
 
-class BloggsCommsManager extends CommsManager {
+class BloggsCommsManager extends CommsManager {    //реализация класса создателя
     function getHeaderText() {
         return "Заголовок Bloggs\n";
     }
 
     function getApptEncoder() {
-        return new BloggsApptEncoder();    //возвращает созданный закодированный объект типа Bloggs
+        return new BloggsApptEncoder();    //возвращает созданный объект типа Bloggs
     }
 
     function getFooterText() {
