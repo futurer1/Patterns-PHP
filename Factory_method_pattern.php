@@ -1,6 +1,6 @@
 <?php
 /**
-* Шаблон Factory Method
+* Шаблон Factory Method (метод-фабрика)
 * Создатель - класс фабрики, в котором определем метод для генерации объекта-продукта.
 * В каждом подклассе создателя создается экземпляр параллельного дочернего класса продукта.
 */
@@ -21,7 +21,8 @@ class MegaApptEncoder extends ApptEncoder {    //конкретная реали
     }
 }
 
-abstract class CommsManager {    //супер-класс создателя
+abstract class CommsManager {    //супер-класс создателя, создает только один тип объектов один методом
+                                 //для каждой реализации создателя этого класса можно задать свой тип объектов, но только один
     abstract function getHeaderText();
     abstract function getApptEncoder();    //метод для генерации объекта-продукта
     abstract function getFooterText();
