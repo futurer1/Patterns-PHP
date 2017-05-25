@@ -56,4 +56,62 @@ class MegaCommsManager extends CommsManager {    //реализация 2 кла
         return "Подвал MegaCal<br />";
     }
 }
+
+abstract class ApptEncoder {    //супер-класс продукта
+    abstract function encode();
+}
+
+class BloggsApptEncoder extends ApptEncoder {    //объект-продукта 1 для создателя 1
+    function encode() {
+        return "Кодируем данные в формат BloggsAppt<br />";
+    }
+}
+
+class BloggsTtdEncoder extends ApptEncoder {    //объект-продукта 2 для создателя 1
+    function encode() {
+        return "Кодируем данные в формат BloggsTtd<br />";
+    }
+}
+
+class BloggsContactEncoder extends ApptEncoder {    //объект-продукта 3 для создателя 1
+    function encode() {
+        return "Кодируем данные в формат BloggsContact<br />";
+    }
+}
+
+class MegaApptEncoder extends ApptEncoder {       //объект-продукта 1 для создателя 2
+    function encode() {
+        return "Кодируем данные в формат MegaAppt<br />";
+    }
+}
+class MegaTtdEncoder extends ApptEncoder {        //объект-продукта 2 для создателя 2
+    function encode() {
+        return "Кодируем данные в формат MegaTtd<br />";
+    }
+}
+class MegaContactEncoder extends ApptEncoder {    //объект-продукта 3 для создателя 2
+    function encode() {
+        return "Кодируем данные в формат MegaContact<br />";
+    }
+}
+
+//Используем инструментарий:
+$mgr = new BloggsCommsManager();    //объект реализации 1
+print $mgr->getHeaderText();
+print $mgr->getApptEncoder()->encode();    //вызвали метод encode() объекта BloggsApptEncoder
+print $mgr->getTtdEncoder()->encode();     //вызвали метод encode() объекта BloggsTtdEncoder
+print $mgr->getContactEncoder()->encode(); //вызвали метод encode() объекта BloggsContactEncoder
+print $mgr->getFooterText();
+
+$mgr1 = new MegaCommsManager();    //объект реализации 2
+print $mgr1->getHeaderText();
+print $mgr1->getApptEncoder()->encode();    //вызвали метод encode() объекта MegaApptEncoder
+print $mgr1->getTtdEncoder()->encode();     //вызвали метод encode() объекта MegaTtdEncoder
+print $mgr1->getContactEncoder()->encode(); //вызвали метод encode() объекта MegaContactEncoder
+print $mgr1->getFooterText();
+/*
+Нужно обратить внимание, что название методов
+getApptEncoder(), getTtdEncoder(), getContactEncoder() вызова одинаковое для
+разных реализаций объектов BloggsCommsManager и MegaCommsManager
+*/
 ?>
