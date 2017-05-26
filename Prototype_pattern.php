@@ -35,6 +35,8 @@ class TerrainFactory {
         $this->plains = $plains;
         $this->forest = $forest;
     }
+    
+    function __clone(){}    //можем менять состояние клонируемого объекта
 
     function getSea() {
         return clone $this->sea;    //возвращаем клонированный объект из уже созданного, т.е. из прототипа
