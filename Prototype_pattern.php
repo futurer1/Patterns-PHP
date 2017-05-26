@@ -1,7 +1,9 @@
 <?php
 /**
 * Шаблон Prototype
-* Особенность заключается в том, что происходит клонирование уже созданных объектов с сохранением их первоначального статуса
+* Особенность заключается в том, что происходит клонирование уже созданных объектов с сохранением их первоначального состояния,
+* которое было с момента инициализации
+* Если требуется управлять начальным состоянием объектов при клонировании, то необходимо использовать метод __clone()
 */
 abstract class Sea    //супер-класс 1
 {
@@ -10,16 +12,16 @@ abstract class Sea    //супер-класс 1
         $this->navigability = $navigability;
     }
 }
-public class EarthSea extends Sea {}    //реализация 1
-public class MarsSea extends Sea {}    //реализация 2
+class EarthSea extends Sea {}    //реализация 1
+class MarsSea extends Sea {}    //реализация 2
 
 abstract class Plains {}    //супер-класс 2
-public class EarthPlains extends Plains {}
-public class MarsPlains extends Plains {}
+class EarthPlains extends Plains {}
+class MarsPlains extends Plains {}
 
 abstract class Forest {}    //супер-класс 3
-public class EarthForest extends Forest {}
-public class MarsForest extends Forest {}
+class EarthForest extends Forest {}
+class MarsForest extends Forest {}
 
 class TerrainFactory {
     private $sea;       //переменная private для хранения объекта-образца одной из реализаций типа Sea
@@ -47,9 +49,17 @@ class TerrainFactory {
     }
 }
 
+//Используем инструментарий:
 $obj_factory = new TerrainFactory(new EarthSea(-1),
                                   new EarthPlains(),
                                   new EarthForest() );  //создали объект-фабрику с объектами-прототипами внутри
-print_r( $obj_factory->getSea() );
+print_r( $obj_factory->getSea() );    //выводим клонированные объекты
 print_r( $obj_factory->getPlains() );
 print_r( $obj_factory->getForest() );
+
+/*
+Выведет:
+EarthSea Object ( [navigability:Sea:private] => -1 )
+EarthPlains Object ( )
+EarthForest Object ( ) 
+*/
