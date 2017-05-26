@@ -38,3 +38,7 @@ class TerrainFactory {
         return clone $this->forest;
     }
 }
+
+$obj_factory = new TerrainFactory(new EarthSea(),
+                                  new EarthPlains(),
+                                  new EarthForest() );  //создали объект-фабрику с объектами-прототипами внутри
