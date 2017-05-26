@@ -113,5 +113,18 @@ print $mgr1->getFooterText();
 Нужно обратить внимание, что название методов
 getApptEncoder(), getTtdEncoder(), getContactEncoder() вызова одинаковое для
 разных реализаций объектов BloggsCommsManager и MegaCommsManager
+
+Выведет:
+
+Заголовок Bloggs
+Кодируем данные в формат BloggsAppt
+Кодируем данные в формат BloggsTtd
+Кодируем данные в формат BloggsContact
+Подвал Bloggs
+Заголовок MegaCal
+Кодируем данные в формат MegaAppt
+Кодируем данные в формат MegaTtd
+Кодируем данные в формат MegaContact
+Подвал MegaCal
 */
 ?>
