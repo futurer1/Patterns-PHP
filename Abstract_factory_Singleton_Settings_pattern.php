@@ -24,4 +24,12 @@ class AppConfig {    //класс типа Singleton, для работы с о�
                 $this->commsManager = new BloggsCommsManager();
         }
     }
+    
+    public static function getInstance() {    //метод по шаблону Singleton для получения из вне объекта класса Singleton
+                                              //через статический метод получаем доступ к объекту, хранящемуся в private переменной класса
+        if ( empty( self::$instance ) ) {
+            self::$instance = new self();
+        }
+        return self::$instance;
+    }
 }
