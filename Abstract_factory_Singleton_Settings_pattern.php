@@ -32,4 +32,13 @@ class AppConfig {    //класс типа Singleton, для работы с о�
         }
         return self::$instance;
     }
+    
+    public function getCommsManager() {    //публичный метод для получения private объекта Создателя
+        return $this->commsManager;
+    }
 }
+
+abstract class CommsManager { }    //супер-класс Создателя, на основе которого строятся Создатели конкретных реализаций
+
+class MegaCommsManager extends CommsManager { }    //Создатель реализации 1
+class BloggsCommsManager extends CommsManager { }    //Создатель реализации 2
