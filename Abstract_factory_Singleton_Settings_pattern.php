@@ -16,5 +16,12 @@ class AppConfig {    //класс типа Singleton, для работы с о�
     }
     
     private function init() {    //инициализация, создание объекта-Создателя и сохранение его в переменную $commsManager
+        switch ( Settings::$COMMSTYPE ) {    //исходя из настроек конфигурации (из класса Settings)
+            case 'Mega':
+                $this->commsManager = new MegaCommsManager();    //заносит в переменную объект Создателя
+                break;
+            default:
+                $this->commsManager = new BloggsCommsManager();
+        }
     }
 }
