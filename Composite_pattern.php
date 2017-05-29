@@ -68,3 +68,17 @@ class LaserCannonUnit extends Unit    //реализация 2 класса Ли
         return 50;
     }
 }
+
+//Используем инструментарий:
+$one_army = new Army();    //создали объект Композит "Армия 1"
+$one_army->addUnit(new Archer());           //добавили единицу Лист
+$one_army->addUnit(new LaserCannonUnit());  //добавили единицу Лист
+
+$two_army = new Army();    //создали объект Композит "Армия 2"
+$two_army->addUnit(new Archer());  //добавили единицу Лист
+$two_army->addUnit(new Archer());  //добавили единицу Лист
+$two_army->addUnit(new Archer());  //добавили единицу Лист
+
+$one_army->addUnit($two_army);    //добавили одну армию внутрь другой (Композит внутрь другого Композита)
+print "Суммарная мощность: {$one_army->bombardStrength()}\n";
+print_r ($one_army);
