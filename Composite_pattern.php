@@ -24,14 +24,18 @@ class Army extends Unit {
     public function removeUnit(Unit $unit)
     {
         $this->units = array_udiff($this->units, array($unit),  //вернет массив со значениями, для которых Ф.О.В. вернула 1
-                            function ($a, $b) {                 //функция обратного вызова (Ф.О.В.) для сравнения элементов
+                            function($a, $b) {                  //функция обратного вызова (Ф.О.В.) для сравнения элементов
                                 return ($a === $b) ? 0 : 1;     //если объект совпал, то возвращаем 0
                             }
                         );
     }
     
-    public function bombardStrength()
+    public function bombardStrength()    //считает сумму значений для всех объектов Unit в массиве
     {
-        
+        $ret = 0;
+        foreach ($this->units as $unit) {
+            $ret += $unit->bombardStrength();    //у каждого объекта типа Unit имеется метод bombardStrength()
+        }
+        return $ret;
     }
 }
