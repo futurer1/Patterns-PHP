@@ -9,7 +9,7 @@ abstract class Unit {
     abstract function bombardStrength();    //любой пользовательский метод
 }
 
-class Army extends Unit {
+class Army extends Unit {    //реализация класса Композита (хранит внутри себя объекты, может создавать и удалять объекты)
     private $units = array();    //массив для хранения объектов класса Unit
     
     public function addUnit(Unit $unit)
@@ -37,5 +37,30 @@ class Army extends Unit {
             $ret += $unit->bombardStrength();    //у каждого объекта типа Unit имеется метод bombardStrength()
         }
         return $ret;
+    }
+}
+
+class Archer extends Unit    //реализация 1 класса Листа (поддерживает операции с объектами класса Unit)
+{
+    public function addUnit(Unit $unit) {}
+    
+    public function removeUnit(Unit $unit) {}
+    
+    public function bombardStrength()
+    {
+        return 5;
+    }
+        
+}
+
+class LaserCannonUnit extends Unit    //реализация 2 класса Листа (поддерживает операции с объектами класса Unit)
+{
+    public function addUnit(Unit $unit) {}
+    
+    public function removeUnit(Unit $unit) {}
+    
+    public function bombardStrength()
+    {
+        return 50;
     }
 }
