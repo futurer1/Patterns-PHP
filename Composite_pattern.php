@@ -23,11 +23,15 @@ class Army extends Unit {
     
     public function removeUnit(Unit $unit)
     {
-        // TODO: Implement removeUnit() method.
+        $this->units = array_udiff($this->units, array($unit),  //вернет массив со значениями, для которых Ф.О.В. вернула 1
+                            function ($a, $b) {                 //функция обратного вызова (Ф.О.В.) для сравнения элементов
+                                return ($a === $b) ? 0 : 1;     //если объект совпал, то возвращаем 0
+                            }
+                        );
     }
     
     public function bombardStrength()
     {
-        // TODO: Implement bombardStrength() method.
+        
     }
 }
