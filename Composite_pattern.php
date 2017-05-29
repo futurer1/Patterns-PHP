@@ -14,7 +14,11 @@ class Army extends Unit {
     
     public function addUnit(Unit $unit)
     {
-        // TODO: Implement addUnit() method.
+        if (in_array($unit, $this->units,true)) {    //если объект уже присутствует в массиве объектов
+                                                     //Сравнение происходит в том числе с учетом типа переменной
+            return;
+        }
+        $this->units[] = $unit;    //добавляем объект в массив
     }
     
     public function removeUnit(Unit $unit)
