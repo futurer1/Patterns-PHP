@@ -14,8 +14,9 @@ abstract class Unit    //супер-класс унифицированной е
 }
 
 abstract class CompositeUnit extends Unit    //абстрактный класс для построения Композитов
+                                             //не имеет реализации метода bombardStrength
 {
-    private $units = array();
+    private $units = array();    //массив для хранения объектов, содержащихся в Композите
 
     public function getComposite()        //Композит всегда вернёт объект, самого себя.
     {
@@ -46,3 +47,29 @@ abstract class CompositeUnit extends Unit    //абстрактный класс
     }
 }
 
+class Army extends CompositeUnit    //класс конкретная реализация 1 Композита
+{
+    public function bombardStrength()    //считает сумму значений для всех объектов в массиве units
+    {
+        $ret = 0;
+        foreach ($this->units as $unit) {
+            $ret += $unit->bombardStrength();    //у каждого объекта типа Unit имеется метод bombardStrength()
+        }
+        return $ret;
+    }
+}
+
+class Archer extends Unit               //реализация 1 Листа
+{   
+    public function bombardStrength()
+    {
+        return 5;
+    }
+}
+class LaserCannonUnit extends Unit      //реализация 2 Листа
+{   
+    public function bombardStrength()
+    {
+        return 50;
+    }
+}
