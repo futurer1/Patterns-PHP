@@ -73,3 +73,23 @@ class LaserCannonUnit extends Unit      //реализация 2 Листа
         return 50;
     }
 }
+
+class UnitScript    //класс для операций над Композитами и Листьями (функционал поведения)
+                    //для Композита: заключает объект $newUnit внутрь него
+                    //для Листа: объединяет внутри нового Композита два объекта $newUnit и $occupyingUnit
+{
+    static function joinExisting( Unit $newUnit,
+                                  Unit $occupyingUnit ) {
+        $comp;    //обычная локальная переменная внутри метода
+        if ( ! is_null( $comp = $occupyingUnit->getComposite() ) ) {    //если $occupyingUnit - Композит
+            $comp->addUnit( $newUnit );
+        } else {    //если $occupyingUnit - Лист
+            $comp = new Army();
+            $comp->addUnit( $occupyingUnit );
+            $comp->addUnit( $newUnit );
+        }
+        return $comp;
+    }
+}
+
+//Используем инструментарий:
