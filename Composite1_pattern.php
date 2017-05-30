@@ -2,6 +2,7 @@
 /**
 * Развитие шаблона Composite
 * Добавлен метод getComposite() для того чтобы различать среди однотипных объектов Композиты и Листы
+* Добавлен класс UnitScript со статическим методом для работы со слиянием Композитов и Листов
 */
 abstract class Unit    //супер-класс унифицированной единицы шаблона Composite (для Композитов и Листьев)
 {
@@ -79,7 +80,7 @@ class UnitScript    //класс для операций над Композит
                     //для Листа: объединяет внутри нового Композита два объекта $newUnit и $occupyingUnit
 {
     static function joinExisting( Unit $newUnit,
-                                  Unit $occupyingUnit ) {
+                                  Unit $occupyingUnit ) {    //результат работы метода всегда Композит
         $comp;    //обычная локальная переменная внутри метода
         if ( ! is_null( $comp = $occupyingUnit->getComposite() ) ) {    //если $occupyingUnit - Композит
             $comp->addUnit( $newUnit );
@@ -110,4 +111,23 @@ Army Object (
         [2] => Archer Object ( ) 
     )
 )
+*/
+
+$two_army = UnitScript::joinExisting($one_army, new LaserCannonUnit());    //добавили к Листу LaserCannonUnit Композит
+                                                                           //в итоге получили объединённый новый Композит
+print_r($two_army);
+/*
+Выведет:
+Army Object (
+    [units:CompositeUnit:private] => Array (
+        [0] => LaserCannonUnit Object ( )
+        [1] => Army Object (
+            [units:CompositeUnit:private] => Array (
+                [0] => Archer Object ( ) 
+                [1] => LaserCannonUnit Object ( )
+                [2] => Archer Object ( )
+            )
+        )
+    )
+) 
 */
