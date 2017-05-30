@@ -98,4 +98,16 @@ $one_army->addUnit(new Archer());             //добавили в композ
 $one_army->addUnit(new LaserCannonUnit());    //добавили в композит Лист 2 LaserCannonUnit
 
 UnitScript::joinExisting(new Archer(), $one_army);    //добавили в композит Лист 3 Archer
+                                                      //(аналогично методу addUnit(), но более безопасно, 
+                                                      //без риска применить этот метод к Листу)
 print_r($one_army);
+/*
+Выведет:
+Army Object ( 
+    [units:CompositeUnit:private] => Array (
+        [0] => Archer Object ( ) 
+        [1] => LaserCannonUnit Object ( ) 
+        [2] => Archer Object ( ) 
+    )
+)
+*/
