@@ -93,3 +93,9 @@ class UnitScript    //класс для операций над Композит
 }
 
 //Используем инструментарий:
+$one_army = new Army();    //создали объект Композит "Армия 1"
+$one_army->addUnit(new Archer());             //добавили в композит Лист 1 Archer
+$one_army->addUnit(new LaserCannonUnit());    //добавили в композит Лист 2 LaserCannonUnit
+
+UnitScript::joinExisting(new Archer(), $one_army);    //добавили в композит Лист 3 Archer
+print_r($one_army);
