@@ -17,9 +17,9 @@ abstract class Component                //абстрактный класс Ко
 
 class RealComponent extends Component    //конкретная реализация Компонента системы
 {
-    private $parameter = 2;
+    private $parameter = 3;
 
-    public function getParameter()
+    public function getParameter()    //название метода Компонента совпадает с названием внутри реализации Декоратора
     {
         return $this->parameter;
     }
@@ -37,7 +37,7 @@ abstract class Decorator extends Component      //абстрактный кла�
 
 class RealDecorator1 extends Decorator    //конкретная реализация 1 Декоратора
 {
-    public function getParameter()      //берём результат работы метода хранимого объекта и 
+    public function getParameter()      //берём результат работы метода Компонента (хранимого в $obj_component объекта) и 
                                         //производим с ним ещё операцию (прибавляем 3)
     {
         return $this->obj_component->getParameter() + 3;
@@ -46,8 +46,7 @@ class RealDecorator1 extends Decorator    //конкретная реализа�
 
 class RealDecorator2 extends Decorator    //конкретная реализация 2 Декоратора
 {
-    public function getParameter()      //берём результат работы метода хранимого объекта и 
-                                        //производим с ним ещё операцию (умножаем на 3)
+    public function getParameter()
     {
         return $this->obj_component->getParameter() * 3;
     }
@@ -55,9 +54,13 @@ class RealDecorator2 extends Decorator    //конкретная реализа�
 
 class RealDecorator3 extends Decorator    //конкретная реализация 3 Декоратора
 {
-    public function getParameter()      //берём результат работы метода хранимого объекта и 
-                                        //производим с ним ещё операцию (вычитаем 3)
+    public function getParameter()
     {
         return $this->obj_component->getParameter() - 3;
     }
 }
+
+//Используем инструментарий:
+$obj = new RealComponent();
+print $obj->getParameter();         //выведет: 3
+
