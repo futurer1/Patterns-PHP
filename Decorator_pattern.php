@@ -82,3 +82,14 @@ $obj = new RealDecorator3(
             )
         );
 print $obj->getParameter();         //выведет: 15
+
+$obj = new RealDecorator2(
+            new RealDecorator3(
+                new RealDecorator2(
+                    new RealDecorator1(
+                        new RealComponent()
+                    )
+                )
+            )
+        );
+print $obj->getParameter();         //выведет: 45
