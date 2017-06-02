@@ -15,7 +15,7 @@ abstract class Component                //абстрактный класс Ко
     abstract function getParameter();
 }
 
-class SubComponent extends Component    //конкретная реализация Компонента системы
+class RealComponent extends Component    //конкретная реализация Компонента системы
 {
     private $parameter = 2;
 
@@ -32,5 +32,14 @@ abstract class Decorator extends Component      //абстрактный кла�
     function __construct(Component $obj)        //записывает объект в переменную $obj_component
     {
         $this->obj_component = $obj;
+    }
+}
+
+class RealDecorator extends Decorator    //конкретная реализация Декоратора
+{
+    public function getParameter()      //берём результат работы метода хранимого объекта и 
+                                        //производим с ним ещё операцию (прибавляем 3)
+    {
+        return $this->obj_component->getParameter() + 3;
     }
 }
