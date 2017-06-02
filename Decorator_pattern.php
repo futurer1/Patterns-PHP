@@ -10,17 +10,17 @@
  *  2. Вызывает метод объекта, хранящегося внутри Слоя.
  */
 
-abstract class Tile
+abstract class Component
 {
-    abstract function getWealthFactor();
+    abstract function getParameter();
 }
 
-class Plains extends Tile
+class SubComponent extends Component
 {
-    private $wealthfactor = 2;
+    private $parameter = 2;
 
-    public function getWealthFactor()
+    public function getParameter()
     {
-        return $this->wealthfactor;
+        return $this->parameter;
     }
 }
