@@ -10,17 +10,27 @@
  *  2. Вызывает метод объекта, хранящегося внутри Слоя.
  */
 
-abstract class Component
+abstract class Component                //абстрактный класс Компонента системы
 {
     abstract function getParameter();
 }
 
-class SubComponent extends Component
+class SubComponent extends Component    //конкретная реализация Компонента системы
 {
     private $parameter = 2;
 
     public function getParameter()
     {
         return $this->parameter;
+    }
+}
+
+abstract class Decorator extends Component      //абстрактный класс Декоратора
+{
+    protected $obj_component;                   //для хранения одного объекта типа Component
+
+    function __construct(Component $obj)        //записывает объект в переменную $obj_component
+    {
+        $this->obj_component = $obj;
     }
 }
