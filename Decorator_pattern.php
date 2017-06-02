@@ -64,3 +64,5 @@ class RealDecorator3 extends Decorator    //конкретная реализа�
 $obj = new RealComponent();
 print $obj->getParameter();         //выведет: 3
 
+$obj = new RealDecorator1( new RealComponent() );
+print $obj->getParameter();         //выведет: 6
