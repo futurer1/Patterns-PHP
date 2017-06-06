@@ -1,4 +1,4 @@
 <?php
 /**
-Шаблон Interpreter
+* Шаблон Interpreter
 */
