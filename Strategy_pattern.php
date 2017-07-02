@@ -1,56 +1,70 @@
 <?php
-abstract class Lesson {
+abstract class Lesson
+{
     private   $duration;
     private   $costStrategy;
 
-    function __construct( $duration, CostStrategy $strategy ) {
+    function __construct($duration, CostStrategy $strategy)
+    {
         $this->duration = $duration;
         $this->costStrategy = $strategy;
     }
 
-    function cost() {
+    function cost()
+    {
         return $this->costStrategy->cost( $this );      //делегирование метода другому классу
     }
 
-    function chargeType() {
-        return $this->costStrategy->chargeType( );
+    function chargeType()
+    {
+        return $this->costStrategy->chargeType();
     }
 
-    function getDuration() {
+    function getDuration()
+    {
         return $this->duration;
     }
 
     //какие-то ещё методы класса...
 }
 
-class Lecture extends Lesson {
+class Lecture extends Lesson
+{
     //Уточнение специфичной реализации класса Лекция
 }
 
-class Seminar extends Lesson {
+class Seminar extends Lesson
+{
     //Уточнение специфичной реализации класса Семинар
 }
 
-abstract class CostStrategy {    //это делегат класса Lesson
-    abstract function cost( Lesson $lesson );
+abstract class CostStrategy    //это делегат класса Lesson
+{
+    abstract function cost(Lesson $lesson);
     abstract function chargeType();
 }
 
-class TimedCostStrategy extends CostStrategy {
-    function cost( Lesson $lesson ) {
-        return ( $lesson->getDuration() * 5 );
+class TimedCostStrategy extends CostStrategy
+{
+    function cost(Lesson $lesson)
+    {
+        return ($lesson->getDuration() * 5);
     }
-    function chargeType() {
+    function chargeType()
+    {
         return "почасовая оплата";
     }
 }
 
-class FixedCostStrategy extends CostStrategy {
-    function cost( Lesson $lesson ) {
+class FixedCostStrategy extends CostStrategy
+{
+    function cost( Lesson $lesson )
+    {
         return 30;
     }
 
-    function chargeType() {
+    function chargeType()
+    {
         return "фиксированная оплата";
     }
 }
