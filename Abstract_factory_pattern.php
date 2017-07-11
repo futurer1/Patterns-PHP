@@ -14,45 +14,45 @@ abstract class CommsManager {    //супер-класс создателя. У�
 }
 
 class BloggsCommsManager extends CommsManager {    //реализация 1 класса создателя
-    function getHeaderText() {
+    public function getHeaderText() {
         return "Заголовок Bloggs<br />";
     }
 
-    function getApptEncoder() {    //возвращает созданный объект типа BloggsAppt
+    public function getApptEncoder() {    //возвращает созданный объект типа BloggsAppt
         return new BloggsApptEncoder();
     }
 
-    function getTtdEncoder() {    //возвращает созданный объект типа BloggsTtd
+    public function getTtdEncoder() {    //возвращает созданный объект типа BloggsTtd
         return new BloggsTtdEncoder();
     }
 
-    function getContactEncoder() {    //возвращает созданный объект типа BloggsContact
+    public function getContactEncoder() {    //возвращает созданный объект типа BloggsContact
         return new BloggsContactEncoder();
     }
 
-    function getFooterText() {
+    public function getFooterText() {
         return "Подвал Bloggs<br />";
     }
 }
 
 class MegaCommsManager extends CommsManager {    //реализация 2 класса создателя
-    function getHeaderText() {
+    public function getHeaderText() {
         return "Заголовок MegaCal<br />";
     }
 
-    function getApptEncoder() {    //возвращает созданный объект типа MegaAppt
+    public function getApptEncoder() {    //возвращает созданный объект типа MegaAppt
         return new MegaApptEncoder();
     }
 
-    function getTtdEncoder() {    //возвращает созданный объект типа MegaTtd
+    public function getTtdEncoder() {    //возвращает созданный объект типа MegaTtd
         return new MegaTtdEncoder();
     }
 
-    function getContactEncoder() {    //возвращает созданный объект типа MegaContact
+    public function getContactEncoder() {    //возвращает созданный объект типа MegaContact
         return new MegaContactEncoder();
     }
 
-    function getFooterText() {
+    public function getFooterText() {
         return "Подвал MegaCal<br />";
     }
 }
@@ -62,35 +62,35 @@ abstract class ApptEncoder {    //супер-класс продукта
 }
 
 class BloggsApptEncoder extends ApptEncoder {    //объект-продукта 1 для создателя 1
-    function encode() {
+    public function encode() {
         return "Кодируем данные в формат BloggsAppt<br />";
     }
 }
 
 class BloggsTtdEncoder extends ApptEncoder {    //объект-продукта 2 для создателя 1
-    function encode() {
+    public function encode() {
         return "Кодируем данные в формат BloggsTtd<br />";
     }
 }
 
 class BloggsContactEncoder extends ApptEncoder {    //объект-продукта 3 для создателя 1
-    function encode() {
+    public function encode() {
         return "Кодируем данные в формат BloggsContact<br />";
     }
 }
 
 class MegaApptEncoder extends ApptEncoder {       //объект-продукта 1 для создателя 2
-    function encode() {
+    public function encode() {
         return "Кодируем данные в формат MegaAppt<br />";
     }
 }
 class MegaTtdEncoder extends ApptEncoder {        //объект-продукта 2 для создателя 2
-    function encode() {
+    public function encode() {
         return "Кодируем данные в формат MegaTtd<br />";
     }
 }
 class MegaContactEncoder extends ApptEncoder {    //объект-продукта 3 для создателя 2
-    function encode() {
+    public function encode() {
         return "Кодируем данные в формат MegaContact<br />";
     }
 }
