@@ -37,26 +37,26 @@ class StrategyWhatWillWeReadToday extends StrategyAbstract
                     // Хорошая погода?
                     new GoodWeather(
                         // да, погода хорошая
-                        new MyFavoriteBookDecision(self::CONST BOOK2),
+                        new MyFavoriteBookDecision(self::BOOK2),
                         // нет, погода плохая
-                        new MyFavoriteBookDecision(self::CONST BOOK3)
+                        new MyFavoriteBookDecision(self::BOOK3)
                     )
                     // нет, готовить не нужно
-                    new MyFavoriteBookDecision(self::CONST BOOK1)
+                    new MyFavoriteBookDecision(self::BOOK1)
                 ),
 
                 // нет, не выходной
                 // Хорошая погода?
                 new GoodWeather(
                     // да, погода хорошая
-                    new MyFavoriteBookDecision(self::CONST BOOK4),
+                    new MyFavoriteBookDecision(self::BOOK4),
                     // нет, погода плохая
                     // Нужно готовить?
                     new NeedToCook(
                           // да, нужно готовить
-                          new MyFavoriteBookDecision(self::CONST BOOK5),
+                          new MyFavoriteBookDecision(self::BOOK5),
                           // нет, готовить не нужно
-                          new MyFavoriteBookDecision(self::CONST BOOK6)
+                          new MyFavoriteBookDecision(self::BOOK6)
                     )
                 )
         );
